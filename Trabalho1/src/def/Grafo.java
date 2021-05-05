@@ -9,22 +9,21 @@ class Grafo
  private int V;   // Variavel respresentante do numero de vertices
 
  // Array  of lists for Adjacency List Representation
- private LinkedList<Integer> adjacente[];
+ private LinkedList<Integer> lista_de_adjacencia[];
 
  // Constructor
  Grafo(int v)
  {
      V = v;
-     adjacente = new LinkedList[v];
+     lista_de_adjacencia = new LinkedList[v];
      for (int i=0; i<v; ++i)
-         adjacente[i] = new LinkedList();
+         lista_de_adjacencia[i] = new LinkedList();
  }
 
  //Function to add an edge into the graph
  void adicionaAresta(int v, int w)
  {
-     adjacente[v].add(w);// Add w to v's list.
-     adjacente[w].add(v); //The graph is undirected
+     lista_de_adjacencia[v].add(w);// Add w to v's list.
  }
 
  // A function used by DFS
@@ -34,7 +33,7 @@ class Grafo
      visitado[v] = true;
      System.out.println(v+1);
      // Recur for all the vertices adjacent to this vertex
-     Iterator<Integer> i = adjacente[v].listIterator();
+     Iterator<Integer> i = lista_de_adjacencia[v].listIterator();
      while (i.hasNext())
      {
          int n = i.next();
@@ -55,7 +54,7 @@ class Grafo
 
      // Find a vertex with non-zero degree
      for (i = 0; i < V; i++)
-         if (adjacente[i].size() != 0)
+         if (lista_de_adjacencia[i].size() != 0)
              break;
 
      // If there are no edges in the graph, return true
@@ -67,7 +66,7 @@ class Grafo
 
      // Check if all non-zero degree vertices are visited
      for (i = 0; i < V; i++)
-        if (visitado[i] == false && adjacente[i].size() > 0)
+        if (visitado[i] == false && lista_de_adjacencia[i].size() > 0)
              return false;
 
      return true;
@@ -82,21 +81,24 @@ class Grafo
      // Check if all non-zero degree vertices are connected
      if (ehConexo() == false)
          return 0;
-
+    
      // Count vertices with odd degree
      int impar = 0;
-     for (int i = 0; i < V; i++)
-         if (adjacente[i].size()%2!=0)
+     for (int i = 0; i < V; i++) {
+    	 System.out.println(lista_de_adjacencia[i]);
+         if (lista_de_adjacencia[i].size()%2!=0) {
+       
              impar++;
-
-     // If count is more than 2, then graph is not Eulerian
-     if (impar > 2)
-         return 0;
-
-     // If odd count is 2, then semi-eulerian.
-     // If odd count is 0, then eulerian
-     // Note that odd count can never be 1 for undirected graph
-     return (impar==2)? 1 : 2;
+         }
+     }
+     
+     // 
+     System.out.println("Quantidade de vertices impares: " + impar);
+     if(impar==0 ) {
+    	 return 1;
+     }
+     else 
+    	 return 0;
  }
 
  // Function to run test cases
@@ -104,12 +106,11 @@ class Grafo
  {
 	 System.out.println("Numero de vertices V: " + V);
      int res = ehEuleriano();
-     if (res == 0)
-         System.out.println("O grafo não é euleriano");
-     else if (res == 1)
-         System.out.println("O grafo tem um caminho euleriano");
+     if (res == 1)
+    	 System.out.println("Há circuito euleriano");
      else
-        System.out.println("O grafo tem um circuito euleriano");
+    	 System.out.println("Não há circuito euleriano");
+   
  }
 
  
