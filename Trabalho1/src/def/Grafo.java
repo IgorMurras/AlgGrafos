@@ -23,7 +23,7 @@ class Grafo
 	 // Funcao para adicionar aresta no grafo
 	 void adicionaAresta(int v, int w)
 	 {
-	     lista_de_adjacencia[v].add(w);// Add w to v's list.
+	     lista_de_adjacencia[v].add(w);	// Adiciona vertice w na lista do vertice v
 	 }
 	
 	 // Funcao usada para busca em profundidade
@@ -75,7 +75,7 @@ class Grafo
 	 }
 
 	 /* 
-	  *  A funcao retorna 0 caso :
+	  * A funcao retorna 0 caso :
 	  *		- O grafo nao seja conexo
 	  *		- O numero de vertices de grau impar seja maior que 2
 	  *	A funcao retorna 1 caso :

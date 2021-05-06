@@ -51,10 +51,11 @@ public class AlgGraf {
 						grafo.adicionaAresta(v-1, w-1); 
 					}
 				}
-				br.close();
-				/*
-				 * Aqui o teste eh rodado 
-				 */
+				// fecha o leitor
+				br.close(); 	
+				
+				
+				// Aqui o teste eh rodado 
 				grafo.teste();
 				
 			} catch (IOException e) {
