@@ -27,9 +27,13 @@ public class AlgGraf {
 			try {
 				// Aqui primeiramente eh feito uma contagem do numero de linhas no arquivo, para ser utilizado como referencia depois na criacao grafo utilizado no algoritmo
 				BufferedReader contador = new BufferedReader(new FileReader(filename));
-				int n = 0;
-				while((line = contador.readLine()) != null) n++;
-				grafo = new Grafo(n);
+				int max = 0;
+				while((line = contador.readLine()) != null) {
+					String[] lineList = line.split("=");
+					int v = Integer.parseInt( (lineList[0].replaceAll(" ", "")) );
+					if(max < v) max = v;
+				}
+				grafo = new Grafo(max);
 				contador.close();
 				
 				// Nessa parte eh feita a leitura de cada linha do arquivo de entrada

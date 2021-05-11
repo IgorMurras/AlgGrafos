@@ -31,7 +31,7 @@ class Grafo
 	 {
 	 // Marca vertice como visitado
 	 visitado[v] = true;
-	 System.out.println(v+1);
+	 //System.out.println(v+1);
 	 
 	 // Recorre para todos os vertices adjacentes a esse vertice 
 	     Iterator<Integer> i = lista_de_adjacencia[v].listIterator();
