@@ -95,9 +95,7 @@ class Grafo
 	            if (lista_de_adjacencia[i].size()%2!=0)
 	                impar++;
 	        }
-	        // Aqui eh mostrado o numero de vertices impares
-	        System.out.println("Quantidade de vertices de grau impar: " + impar);
-	        
+	      
 	        // Caso o número de vertices de grau impar for maior que 3 o grafo nao eh euleriano
 	        if (impar > 2) {
 	            return 0;

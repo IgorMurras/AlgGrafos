@@ -13,23 +13,22 @@ public class AlgGraf {
 			System.out.println("So eh possivel entrar com o caminho do arquivo");
 			System.exit(-1) ;
 		}else {
-		filename = args[0];
+			filename = args[0];
 		}
 		Grafo grafo;
 		try {
-			/*
-			 *	Nessa parte o arquivo de entrada eh lido e manipulado para a informacao do grafo ser utilizada de forma correta
-			 */
+			
+			// Nessa parte o arquivo de entrada eh lido e manipulado para a informacao do grafo ser utilizada de forma correta
 			File file = new File(filename);   			 	// cria nova instancia de arquivo
 			FileReader fr = new FileReader(file);  		 	// leitura do arquivo
 			BufferedReader br = new BufferedReader(fr); 	// cria um buffer de caracteres
 			String line; 
 			try {
-				// Aqui primeiramente eh feito uma contagem do numero de linhas no arquivo, para ser utilizado como referencia depois na criacao grafo utilizado no algoritmo
+				// Aqui primeiramente eh feito verificacao do numero de vertices para ser utilizado como referencia na criacao do grafo utilizado no algoritmo
 				BufferedReader contador = new BufferedReader(new FileReader(filename));
 				int max = 0;
 				while((line = contador.readLine()) != null) {
-					String[] lineList = line.split("=");
+					String[] lineList = line.split("="); 
 					int v = Integer.parseInt( (lineList[0].replaceAll(" ", "")) );
 					if(max < v) max = v;
 				}
@@ -45,9 +44,7 @@ public class AlgGraf {
 					
 					/* se tamanho de lineList = 1 entao o vertice nao possui adjacencia 
 					 * se tamanho de lineList = 2 entao o vertice possui ao menos um vertice adjacente  
-					 */
-					
-					//System.out.println(lineList.length);							
+					 */						
 					
 					if(lineList.length==0) {
 						System.out.println("Erro na entrada");
@@ -61,8 +58,8 @@ public class AlgGraf {
 					
 					if(lineList.length == 2 && !lineList[1].equals(" ")) {
 											
-						adjList = lineList[1].split(" ");						/* aqui a segunda parte da entrada (que estava depois de '=') é dividida em varias,
-																				 * no caso utilizando os espaços " " como referencia para dividir, pegando o numero de cada vertice */ 
+						adjList = lineList[1].split(" ");		/* aqui a segunda parte da entrada (que estava depois de '=') é dividida em varias,
+																 * no caso utilizando os espaços " " como referencia para dividir, pegando o numero de cada vertice */ 
 						/*
 						 * Aqui cada vertice V (do lado esquerdo do sinal de '=') eh relacionado com seus respectivos vertices W (que estavam do lado direito do sinal de '=')  
 						 * Essa associação eh feita por meio do metodo adicionaAresta
@@ -77,6 +74,7 @@ public class AlgGraf {
 							}
 						}
 					} else if(lineList.length == 1 || lineList[1].equals(" ")) {
+						// tratamento caso exista apenas um vertice nao conexo 
 						grafo.adicionaAresta(v-1, v-1); 
 					}
 				}
