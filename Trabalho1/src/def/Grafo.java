@@ -96,7 +96,7 @@ class Grafo
 	                impar++;
 	        }
 	        // Aqui eh mostrado o numero de vertices impares
-	        System.out.println("Quantidade de vertices impares: " + impar);
+	        System.out.println("Quantidade de vertices de grau impar: " + impar);
 	        
 	        // Caso o número de vertices de grau impar for maior que 3 o grafo nao eh euleriano
 	        if (impar > 2) {
@@ -114,7 +114,7 @@ class Grafo
 	        if (resposta == 0)
 	            System.out.println("O grafo não é euleriano");
 	        else if (resposta == 1)
-	            System.out.println("O grafo tem um caminho euleriano");
+	            System.out.println("O grafo tem um caminho euleriano, mas nao um circuito");
 	        else
 	           System.out.println("O grafo tem um circuito euleriano");
 	    }
